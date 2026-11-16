@@ -1,0 +1,57 @@
+name: 安装 / 启动问题
+description: 装不上、打不开、闪退、卡在启动页
+title: "[安装] "
+labels: ["安装启动"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交前请先搜索已有 issue，并确认用的是 Releases 页的正式版本。
+        请不要贴密钥、身份证、聊天记录等敏感内容。
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 平台
+      options:
+        - macOS（Apple 芯片）
+        - macOS（Intel）
+        - Windows 10
+        - Windows 11
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 麦灵版本号
+      description: 软件内「关于」里可以看到
+      placeholder: 例：1.0.27
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: 系统版本
+      placeholder: 例：macOS 15.7 / Windows 11 23H2
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 具体现象
+      description: 双击后发生了什么？有没有报错弹窗？
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 下载 xx
+        2. 拖进应用程序
+        3. 双击启动
+        4. 出现 xxx
+  - type: textarea
+    id: shots
+    attributes:
+      label: 截图或日志
+      description: 有截图最好；卡住时可以把软件日志贴上来（注意先删掉隐私内容）

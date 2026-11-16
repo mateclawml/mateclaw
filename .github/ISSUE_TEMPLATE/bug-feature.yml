@@ -1,0 +1,48 @@
+name: 功能异常
+description: 功能不对、结果异常、报错
+title: "[功能] "
+labels: ["功能异常"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请尽量给出可复现的最短步骤。涉及模型回复的问题，请说明用的是哪家模型服务。
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 平台
+      options:
+        - macOS（Apple 芯片）
+        - macOS（Intel）
+        - Windows 10
+        - Windows 11
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 麦灵版本号
+      placeholder: 例：1.1.26
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: 使用的模型服务
+      placeholder: 例：某厂商的某模型
+  - type: textarea
+    id: what
+    attributes:
+      label: 你期望什么，实际发生了什么
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+    validations:
+      required: true
+  - type: textarea
+    id: shots
+    attributes:
+      label: 截图或日志

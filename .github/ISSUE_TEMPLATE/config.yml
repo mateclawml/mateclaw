@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 购买与售后支持 / Purchase & support
+    url: https://www.mateclawml.com
+    about: 价格、发票、退款、授权问题请走官网 / Pricing, invoices, refunds and licensing go through the official site.
+  - name: 安全问题 / Security
+    url: https://github.com/mateclawml/MateClaw-%E9%BA%A6%E7%81%B5/blob/main/SECURITY.md
+    about: 漏洞请勿公开提交 / Do not report vulnerabilities publicly.

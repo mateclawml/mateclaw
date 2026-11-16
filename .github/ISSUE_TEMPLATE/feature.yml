@@ -1,0 +1,36 @@
+name: 功能建议
+description: 想要什么功能，或觉得哪里难用
+title: "[建议] "
+labels: ["建议"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        说清楚「你在什么场景下想做什么」，比说「加个 X 功能」有用得多。
+  - type: textarea
+    id: scene
+    attributes:
+      label: 你的使用场景
+      description: 平时用麦灵做什么？这次卡在哪？
+    validations:
+      required: true
+  - type: textarea
+    id: want
+    attributes:
+      label: 你希望它怎么帮你
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: 现在你用什么办法绕过去
+      description: 可选
+  - type: dropdown
+    id: paid
+    attributes:
+      label: 如果是付费功能，你能接受吗
+      options:
+        - 免费版里就该有
+        - 全能版里有就行
+        - 单独立项也可以
+        - 说不好
