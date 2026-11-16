@@ -18,7 +18,7 @@
 
 ## 下载
 
-到 [Releases](https://github.com/mateclawml/MateClaw-%E9%BA%A6%E7%81%B5/releases) 页下载对应平台安装包，页面附 SHA-256 校验值。
+到 [Releases](https://github.com/mateclawml/mateclaw/releases) 页下载对应平台安装包，页面附 SHA-256 校验值。
 
 | 平台 | 文件 | 说明 |
 | --- | --- | --- |
@@ -89,7 +89,7 @@ certutil -hashfile MateClaw-*-setup.exe SHA256
 - Documentation here is bilingual; the in-app experience is not.
 - Windows and macOS builds are separate download files; there is no auto-update between platforms.
 
-**Download** from [Releases](https://github.com/mateclawml/MateClaw-%E9%BA%A6%E7%81%B5/releases) and verify the published SHA-256 checksum. macOS builds are signed and notarized; Windows builds are code-signed.
+**Download** from [Releases](https://github.com/mateclawml/mateclaw/releases) and verify the published SHA-256 checksum. macOS builds are signed and notarized; Windows builds are code-signed.
 
 **Requirements:** macOS 15.7+ (Apple silicon) or Windows 10+ (64-bit).
 

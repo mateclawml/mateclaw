@@ -9,4 +9,4 @@
 
 ## 历史版本
 
-见 [Releases](https://github.com/mateclawml/MateClaw-%E9%BA%A6%E7%81%B5/releases) 页。
+见 [Releases](https://github.com/mateclawml/mateclaw/releases) 页。
