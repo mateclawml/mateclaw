@@ -24,7 +24,7 @@ body:
     attributes:
       label: 麦灵版本号
       description: 软件内「关于」里可以看到
-      placeholder: 例：1.0.27
+      placeholder: 例：macOS 1.0.30 / Windows 1.1.28
     validations:
       required: true
   - type: input
