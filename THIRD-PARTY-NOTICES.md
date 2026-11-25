@@ -1,7 +1,7 @@
 # 麦灵 MateClaw 第三方软件与许可声明（草案）
 
-- 版本：2026-11-16 草案
-- 适用：MateClaw 麦灵 macOS 1.0.27（Windows 版暂不公开发布）
+- 版本：2026-11-25 修订
+- 适用：MateClaw 麦灵 macOS 1.0.30、Windows 1.1.28（公开发行版）
 - 发布主体：麦灵科技（大城县）有限公司
 - 说明：本文件是发布用草案，不构成法律意见；正式发布前请律师复核。
 
@@ -29,7 +29,7 @@
 | OpenClaw | 随包运行时 | MIT | 保留版权与许可文本 | 上游底座；非官方发行版 |
 | Node.js | 随包运行时 | MIT | 保留版权与许可文本 | 运行 OpenClaw |
 | Electron / Chromium | Windows 桌面壳 | MIT / BSD 等 | 保留版权与许可文本 | Windows 版 |
-| FFmpeg | **不随包**，由开源插件调用用户自装版本 | GPLv3（用户自装，非我们分发） | 我们不分发二进制，无源码提供义务 | 详见第四节 |
+| FFmpeg | macOS 1.0.30：**不随包**；Windows 1.1.28：随包一个未修改的预编译可执行文件 | GPLv3 | Windows 版随包分发，须提供对应源码的获取方式（已提供，见第四节） | 详见第四节 |
 | Python 运行时及依赖 | 随包 | PSF / MIT / BSD / Apache 等 | 保留各自许可文本 | 逐项见安装包内声明 |
 | Ollama | 随包 | MIT | 保留版权与许可文本 | 本地模型运行 |
 | Kokoro 语音模型 | 随包 | Apache-2.0 | 保留版权与许可文本 | 中文语音 |
@@ -58,29 +58,33 @@
 
 ---
 
-## 四、FFmpeg 专项说明（已移出安装包）
+## 四、FFmpeg 专项说明（两个平台情况不同）
 
-### 4.1 现状（2026-11-25 调整）
+### 4.1 现状（2026-11-25）
 
-**所有安装包都不再随包分发 FFmpeg。**
+| 版本 | 包内是否含 FFmpeg | 说明 |
+|---|---|---|
+| macOS 1.0.30 | 否 | 视频抽帧等功能由开源插件调用用户自装 FFmpeg |
+| Windows 1.1.28 | **是**，`resources/brain/bin/ffmpeg.exe` | 拆分之前打的包，未做任何修改，照原样分发 |
 
-- macOS 1.0.27：包内本来就没有 ffmpeg 可执行文件；视频抽帧依赖用户机器上自行安装的 ffmpeg。
-- Windows 1.1.26：曾随包带 `resources/brain/bin/ffmpeg.exe`（约 161 MB，GPLv3 构建，含 x264/x265）。**该做法已废除**；后续 Windows 包不再打入该文件，Windows 版也尚未公开发布。
-- 音视频能力改为独立开源插件：[mateclawml/media-plugin](https://github.com/mateclawml/media-plugin)（MIT）。插件不含 FFmpeg 二进制，只调用用户自己安装的 FFmpeg。
+音视频能力本身已拆为独立开源插件：[mateclawml/media-plugin](https://github.com/mateclawml/media-plugin)（MIT）。插件不含 FFmpeg 二进制，只调用用户自己安装的 FFmpeg。**Windows 下一版将移除包内 FFmpeg**，届时两个平台一致。
 
-### 4.2 为什么这样处理
+### 4.2 源码提供（针对 Windows 1.1.28）
 
-GPLv3 的源码提供义务来自「随包分发二进制」。不再分发二进制，就不再产生该义务；用户自己安装 FFmpeg，属用户与其所用发行版之间的许可关系。
+Windows 1.1.28 随包分发的是**未修改**的预编译 FFmpeg 可执行文件，按 GPLv3 分发。我们按第 6 条（b）项以书面提供方式履行义务：
 
-插件用独立进程调用 FFmpeg，属于「聚合」而非「衍生」，不把 GPL 传染到麦灵自有代码，也不传染到插件自身代码。
+- 获取渠道一：<https://ffmpeg.org/download.html>（与该二进制对应的上游源码）。
+- 获取渠道二：发信到 **opensource@mateclawml.com**，写明「索取 Windows 1.1.28 内含 FFmpeg 对应源码」，我们在三个工作日内提供源码或可长期访问的获取方式。
+- 该书面提供自本版发布起三年内有效。
+- 我们未修改该二进制；如需构建配置与打包方式，同样可通过上述邮箱索取。
 
 ### 4.3 发布页应写的文字
 
-> 音视频处理（视频抽帧、音频转换）由独立开源插件提供，插件调用你本机安装的 FFmpeg。麦灵安装包内不含 FFmpeg 二进制。
+> macOS 1.0.30 安装包内不含 FFmpeg 二进制，音视频功能由独立开源插件调用你本机安装的 FFmpeg。Windows 1.1.28 是拆分之前的打包，仍内置一个未修改的 FFmpeg 可执行文件，下一版移除；其源码获取方式见第三方声明。
 
 ### 4.4 不要做的事
 
-- 不要在安装包里重新打入 GPL 版 ffmpeg。
+- 不要在**新**版本安装包里继续打入 GPL 版 ffmpeg。
 - 不要在发布页写「本产品完全开源」。
 - 不要把 FFmpeg 说成「我们自研的音视频引擎」。
 - 不要让插件去静默下载 GPL 的 ffmpeg 再分发；插件只提示用户自行安装，或引导到 FFmpeg 官方发行渠道。
