@@ -23,10 +23,15 @@
 
 | 平台 | 文件 | 状态 |
 | --- | --- | --- |
-| macOS（Apple 芯片） | `.dmg` | 已签名并公证，系统 15.7 起 · **当前发布** |
-| Windows（64 位） | `-setup.exe` | 未完成代码签名 · **暂不发布** |
+| macOS（Apple 芯片） | `MateClaw-1.0.30.dmg` | 已签名并公证，系统 15.7 起 · **本页可下载** |
+| Windows（64 位） | `MateClaw-Windows-1.1.28-setup.exe` | 未完成代码签名 · **仅官网提供** |
 
-Windows 版尚未完成代码签名，为避免让用户手动绕过系统警告，**首个公开发行版只提供 macOS 安装包**。Windows 版签名完成后再单独发布，理由和进度会写在这里。
+Windows 版目前只在官网分发：<https://www.mateclawml.com/#download>。有两个原因，都说清楚：
+
+1. 这一版**还没有代码签名**，Windows 会提示「未知发布者」，需要用户手动选择「仍要运行」。这种风险提示放在官网上更合适。
+2. 这一版的安装包**仍随带 FFmpeg 二进制**。FFmpeg 常见发行版是 GPL，公开镜像会扩大分发范围，并带来源码提供义务。下一版会移除内置 FFmpeg。
+
+等 Windows 版完成签名、并移除内置 FFmpeg 之后，再在本页提供下载。
 
 安装前请核对校验值：
 
@@ -54,7 +59,7 @@ shasum -a 256 MateClaw-*.dmg
 openclaw plugins install mateclaw-media-plugin
 ```
 
-插件调用你自己机器上的 FFmpeg，麦灵不随包分发 FFmpeg 二进制，因此安装包里没有 GPL 组件，你也不需要为用一个视频功能接受一份开源协议。FFmpeg 怎么装，插件仓库里写清楚了。
+插件调用你自己机器上的 FFmpeg，**macOS 安装包不含 FFmpeg 二进制**；Windows 1.1.28 是较早的打包，仍内置 FFmpeg，下一版会移除。插件仓库里写清了 FFmpeg 怎么装、找不到时会提示什么。
 
 ## 关于本仓库
 
@@ -103,13 +108,13 @@ openclaw plugins install mateclaw-media-plugin
 
 - **The user interface is Chinese only.** There is no language switcher yet.
 - Documentation here is bilingual; the in-app experience is not.
-- **macOS only for now.** The Windows build is not yet code-signed, so we do not publish it.
+- **macOS installer is here; Windows is on our website only.** The Windows build is not code-signed yet, and version 1.1.28 still bundles the FFmpeg binary. Mirroring it publicly would widen distribution of a GPL component and bring source-provision obligations with it, so Windows downloads stay on <https://www.mateclawml.com/#download> until the next build removes the bundled FFmpeg and adds signing.
 
-**Download** from [Releases](https://github.com/mateclawml/mateclaw) and verify the published SHA-256 checksum. macOS builds are signed and notarized.
+**Download** the macOS `.dmg` from [Releases](https://github.com/mateclawml/mateclaw) and verify the published SHA-256 checksum. macOS builds are signed and notarized.
 
-**Requirements:** macOS 15.7+ (Apple silicon).
+**Requirements:** macOS 15.7+ (Apple silicon). The interface is Chinese only.
 
-**Media features are a plugin, not part of the installer.** Video frame extraction and audio conversion ship as a separate open-source plugin ([mateclawml/media-plugin](https://github.com/mateclawml/media-plugin), MIT) that uses your own FFmpeg installation. The installer therefore contains no GPL binaries.
+**Media features are a plugin, not part of the installer.** Video frame extraction and audio conversion ship as a separate open-source plugin ([mateclawml/media-plugin](https://github.com/mateclawml/media-plugin), MIT) that calls your own FFmpeg installation. The macOS installer contains no FFmpeg binary; Windows 1.1.28 still bundles one and will drop it in the next build.
 
 **Licensing:** repository content is covered by [LICENSE](LICENSE). The application itself is licensed under a separate end-user license agreement available at <https://www.mateclawml.com>. Third-party components are listed in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
