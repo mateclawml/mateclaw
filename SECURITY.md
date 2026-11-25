@@ -4,7 +4,7 @@
 
 如果你发现安全漏洞，**请不要在公开问题区提交**。
 
-请发邮件到：**security@mateclawml.com**（待开通前，暂用 support@mateclawml.com）
+请发邮件到：**support@mateclawml.com**，邮件标题请注明「安全漏洞」。
 
 邮件请包含：
 

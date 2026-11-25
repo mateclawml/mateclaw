@@ -1,8 +1,10 @@
-# MateClaw 麦灵
+# MateClaw 麦灵（ML）｜官方发行与说明仓库
 
 ![麦灵的三位角色](assets/hero-characters.jpg)
 
-**在你自己电脑上跑的中文 AI 助手。装好就能用，不绑账号，不碰你的数据。**
+**在你自己电脑上跑的中文 AI 助手。免费功能无需注册；聊天与文件留在本机，服务器只保存账号、订单和付费功能凭证。**
+
+> 本仓库由麦灵科技（大城县）有限公司维护。官方网址：<https://www.mateclawml.com>。请以本页、`mateclawml` GitHub 组织和官方网站发布的信息为准。
 
 真实界面长这样：
 
@@ -28,7 +30,7 @@
 - 系统：macOS 15.7 及以上（Apple 芯片）；Windows 10/11 64 位
 - 界面语言：**目前仅中文**
 - 免费版永久免费；全能版一次性买断
-- 数据存在你本机；需要联网的功能才会联网
+- 聊天、记忆、桌宠素材和文件内容存在本机；账号、订单和付费功能凭证保存在官方服务器
 - 音视频处理（视频抽帧、音频转换）**不在安装包里**，按需安装开源插件，见 [插件](#插件)
 
 ## 下载
@@ -69,13 +71,17 @@ certutil -hashfile MateClaw-Windows-1.1.28.zip SHA256   # Windows
 | --- | --- | --- | --- |
 | 音视频组件 | 视频抽帧、音频提取与转码 | MIT（调用系统 FFmpeg） | [mateclawml/media-plugin](https://github.com/mateclawml/media-plugin) |
 
-安装方式（装好麦灵之后在终端里执行）：
+当前插件尚未发布到 npm，需要从源码安装。请先确认 `ffmpeg` 和 `ffprobe` 已在 `PATH` 中，然后在终端执行：
 
 ```bash
-openclaw plugins install mateclaw-media-plugin
+git clone https://github.com/mateclawml/media-plugin.git
+cd media-plugin
+npm ci
+npm run build
+openclaw plugins install ./
 ```
 
-插件调用你自己机器上的 FFmpeg。**macOS 1.0.30 安装包不含 FFmpeg 二进制**；Windows 1.1.28 是拆分之前的打包，仍内置一个，下一版移除。插件仓库里写清了 FFmpeg 怎么装、找不到时会提示什么。
+安装要求、FFmpeg 安装方式和故障排查见 [插件仓库的 README](https://github.com/mateclawml/media-plugin#readme)。**macOS 1.0.30 安装包不含 FFmpeg 二进制**；Windows 1.1.28 是拆分之前的打包，仍内置一个，下一版移除。
 
 ## 关于本仓库
 
@@ -108,7 +114,7 @@ openclaw plugins install mateclaw-media-plugin
 
 ## 商标与致谢
 
-「MateClaw」「麦灵」为麦灵科技（大城县）有限公司的商标。
+「MateClaw」「麦灵」由麦灵科技（大城县）有限公司使用并维护。具体商标申请与权利状态以国家知识产权局公示信息为准。
 
 感谢 OpenClaw（MIT）、FFmpeg、Live2D Cubism 及所有开源作者。
 
@@ -116,7 +122,9 @@ openclaw plugins install mateclaw-media-plugin
 
 # English
 
-**MateClaw is a desktop AI assistant for Chinese users, running on your own machine.** Bring your own model provider; we never see your keys or your chats.
+**MateClaw is a desktop AI assistant for Chinese users, running on your own machine.** No registration is required for the free features. Chats and files stay on your device; the official server stores only account, order and paid-feature entitlement records.
+
+> This repository is maintained by MateClaw Technology (Dacheng County) Co., Ltd. Official website: <https://www.mateclawml.com>. Please treat this page, the `mateclawml` GitHub organization and the official website as the authoritative sources.
 
 > ⚠️ This repository is a **public release and documentation page**, not an open-source code repository. The application source code is not public.
 > This product is an **independent distribution based on OpenClaw (MIT License)** and is **not affiliated with, endorsed by, or sponsored by the OpenClaw project.**
@@ -132,7 +140,7 @@ openclaw plugins install mateclaw-media-plugin
 
 **Requirements:** macOS 15.7+ (Apple silicon), or 64-bit Windows 10/11. The interface is Chinese only.
 
-**Media features are a plugin, not part of the installer.** Video frame extraction and audio conversion ship as a separate open-source plugin ([mateclawml/media-plugin](https://github.com/mateclawml/media-plugin), MIT) that calls your own FFmpeg installation. The macOS installer contains no FFmpeg binary; Windows 1.1.28 still bundles one and will drop it in the next build.
+**Media features are a plugin, not part of the installer.** Video frame extraction and audio conversion ship as a separate open-source plugin ([mateclawml/media-plugin](https://github.com/mateclawml/media-plugin), MIT) that calls your own FFmpeg installation. The plugin is not yet published to npm; until then, follow the source-install steps in the plugin repository. The macOS installer contains no FFmpeg binary; Windows 1.1.28 still bundles one and will drop it in the next build.
 
 **Licensing:** repository content is covered by [LICENSE](LICENSE). The application itself is licensed under a separate end-user license agreement available at <https://www.mateclawml.com>. Third-party components are listed in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
@@ -142,4 +150,4 @@ openclaw plugins install mateclaw-media-plugin
 
 ---
 
-*维护：麦灵科技（大城县）有限公司 ｜ 联系：opensource@mateclawml.com*
+*维护：麦灵科技（大城县）有限公司 ｜ 联系：support@mateclawml.com*
