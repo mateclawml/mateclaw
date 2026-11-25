@@ -1,6 +1,10 @@
 # MateClaw 麦灵
 
+![麦灵的三位角色：小衣、晓伊、阿蓝](assets/hero-characters.jpg)
+
 **在你自己电脑上跑的中文 AI 助手。装好就能用，不绑账号，不碰你的数据。**
+
+真实界面长这样：
 
 ![麦灵主界面](assets/screenshot-main.png)
 
