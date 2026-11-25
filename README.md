@@ -9,36 +9,52 @@
 
 ## 这是什么
 
-麦灵把「一个大模型助手」做成了桌面上随手可用的东西：常驻一个会说话、会动的小助手，能读文件、能做表格、能剪视频抽帧、能写东西、能定时记事。模型由你自己选、自己付费给厂商，我们不经手。
+麦灵把「一个大模型助手」做成了桌面上随手可用的东西：常驻一个会说话、会动的小助手，能读文件、能做表格、能写东西、能定时记事。模型由你自己选、自己付费给厂商，我们不经手。
 
-- 系统：macOS 15.7 及以上（Apple 芯片）／ Windows 10 及以上（64 位）
+- 系统：macOS 15.7 及以上（Apple 芯片）
 - 界面语言：**目前仅中文**
 - 免费版永久免费；全能版一次性买断
 - 数据存在你本机；需要联网的功能才会联网
+- 音视频处理（视频抽帧、音频转换）**不在安装包里**，按需安装开源插件，见 [插件](#插件)
 
 ## 下载
 
-到 [Releases](https://github.com/mateclawml/mateclaw/releases) 页下载对应平台安装包，页面附 SHA-256 校验值。
+到 [Releases](https://github.com/mateclawml/mateclaw/releases) 页下载安装包，页面附 SHA-256 校验值。
 
-| 平台 | 文件 | 说明 |
+| 平台 | 文件 | 状态 |
 | --- | --- | --- |
-| macOS（Apple 芯片） | `.dmg` | 已签名并公证，系统 15.7 起 |
-| Windows（64 位） | `-setup.exe` | 已代码签名 |
+| macOS（Apple 芯片） | `.dmg` | 已签名并公证，系统 15.7 起 · **当前发布** |
+| Windows（64 位） | `-setup.exe` | 未完成代码签名 · **暂不发布** |
 
-安装前请核对校验值。校验方法：
+Windows 版尚未完成代码签名，为避免让用户手动绕过系统警告，**首个公开发行版只提供 macOS 安装包**。Windows 版签名完成后再单独发布，理由和进度会写在这里。
+
+安装前请核对校验值：
 
 ```bash
-# macOS
 shasum -a 256 MateClaw-*.dmg
-# Windows
-certutil -hashfile MateClaw-*-setup.exe SHA256
 ```
 
 ## 安装
 
-**macOS**：打开 `.dmg`，把「麦灵」拖进「应用程序」，首次启动如提示「无法验证开发者」，到「系统设置 → 隐私与安全性」点「仍要打开」。
+打开 `.dmg`，把「麦灵」拖进「应用程序」。首次启动如提示「无法验证开发者」，到「系统设置 → 隐私与安全性」点「仍要打开」。
 
-**Windows**：双击安装包，按提示下一步。首次运行如被 SmartScreen 拦，点「更多信息 → 仍要运行」。
+首次启动会引导你选模型服务商、填自己的密钥。密钥只存在本机。
+
+## 插件
+
+安装包保持精简，附加能力用**开源插件**提供，代码公开、可自行审计、可自己改。
+
+| 插件 | 用途 | 许可 | 仓库 |
+| --- | --- | --- | --- |
+| 音视频组件 | 视频抽帧、音频提取与转码 | MIT（调用系统 FFmpeg） | [mateclawml/media-plugin](https://github.com/mateclawml/media-plugin) |
+
+安装方式（装好麦灵之后在终端里执行）：
+
+```bash
+openclaw plugins install mateclaw-media-plugin
+```
+
+插件调用你自己机器上的 FFmpeg，麦灵不随包分发 FFmpeg 二进制，因此安装包里没有 GPL 组件，你也不需要为用一个视频功能接受一份开源协议。FFmpeg 怎么装，插件仓库里写清楚了。
 
 ## 关于本仓库
 
@@ -52,7 +68,7 @@ certutil -hashfile MateClaw-*-setup.exe SHA256
 - 许可见 [LICENSE](LICENSE)（仅覆盖本仓库内容，不覆盖软件本体）。
 - 第三方组件与许可见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。
 - 安全问题请见 [SECURITY.md](SECURITY.md)，**不要**在公开问题区贴漏洞细节。
-- 我们**不接受代码合并请求**（Pull Request），因为源代码不公开；欢迎提问题和建议。
+- 我们**不接受软件本体的代码合并请求**（Pull Request），因为源代码不公开；插件仓库是开源的，那边欢迎 PR。问题与建议随时提。
 
 ## 反馈
 
@@ -87,15 +103,17 @@ certutil -hashfile MateClaw-*-setup.exe SHA256
 
 - **The user interface is Chinese only.** There is no language switcher yet.
 - Documentation here is bilingual; the in-app experience is not.
-- Windows and macOS builds are separate download files; there is no auto-update between platforms.
+- **macOS only for now.** The Windows build is not yet code-signed, so we do not publish it.
 
-**Download** from [Releases](https://github.com/mateclawml/mateclaw/releases) and verify the published SHA-256 checksum. macOS builds are signed and notarized; Windows builds are code-signed.
+**Download** from [Releases](https://github.com/mateclawml/mateclaw) and verify the published SHA-256 checksum. macOS builds are signed and notarized.
 
-**Requirements:** macOS 15.7+ (Apple silicon) or Windows 10+ (64-bit).
+**Requirements:** macOS 15.7+ (Apple silicon).
+
+**Media features are a plugin, not part of the installer.** Video frame extraction and audio conversion ship as a separate open-source plugin ([mateclawml/media-plugin](https://github.com/mateclawml/media-plugin), MIT) that uses your own FFmpeg installation. The installer therefore contains no GPL binaries.
 
 **Licensing:** repository content is covered by [LICENSE](LICENSE). The application itself is licensed under a separate end-user license agreement available at <https://www.mateclawml.com>. Third-party components are listed in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
-**No pull requests, please** — the source is closed. Issues and feature requests are welcome.
+**No pull requests for the application** — its source is closed. The plugin repository is open source and PRs are welcome there. Issues and feature requests are welcome here.
 
 **Purchase and support:** <https://www.mateclawml.com>
 
